@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+ 
+ 
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...  
+      - export FONTAWESOME_NPM_AUTH_TOKEN=$FONTAWESOME_NPM_AUTH_TOKEN
+      - docker build -t main_website .
+      - docker tag main_website:latest 503823209433.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/main_website:V.${CODEBUILD_BUILD_ID##*:}
+
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 503823209433.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/main_website:V.${CODEBUILD_BUILD_ID##*:}

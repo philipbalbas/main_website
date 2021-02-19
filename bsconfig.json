@@ -1,0 +1,37 @@
+{
+	"name": "mauna-site",
+	"reason": {
+		"react-jsx": 3
+	},
+	"sources": [
+		{
+			"dir": "src",
+			"subdirs": true
+		}
+	],
+	"bsc-flags": [
+		"-bs-no-version-header",
+		"-bs-super-errors",
+		"-bs-g"
+	],
+	"package-specs": [
+		{
+			"module": "es6",
+			"in-source": true
+		}
+	],
+	"suffix": ".js",
+	"namespace": true,
+	"bs-dependencies": [
+		"reason-react"
+	],
+	"refmt": 3,
+	"warnings": {
+		"error": "+101+8"
+	},
+	"gentypeconfig": {
+		"language": "untyped",
+		"shims": [],
+		"module": "es6"
+	}
+}
